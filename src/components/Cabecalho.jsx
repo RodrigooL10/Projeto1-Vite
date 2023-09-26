@@ -1,10 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
+import styles from "./Cabecalho.module.css"
 
 export default function cabecalho() {
   return (
     <>
-      <header>
+      <header className={styles.cabecalho}>
         <h1>Vite + React</h1>
+        <img src="/public/img/produtos.png" alt="Carrinho de compras" />
 
         <nav>
           <ul>

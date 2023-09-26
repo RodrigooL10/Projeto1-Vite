@@ -1,0 +1,44 @@
+
+.cabecalho{
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(95, 93, 93);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    justify-content: space-around;
+    
+    & h1{
+        text-align: center;
+    }
+
+    & img{
+        width: 5%;
+    }
+
+    & nav{
+        
+        & ul{
+            list-style: none;
+
+            & li{
+                display: inline-block;
+                padding: 0 5px;
+                
+                & a{
+                    text-decoration: none;
+                    color: white;
+                    display: inline-block;
+                    font-weight: bold;
+                    padding: 50px 10px;
+
+                    &:hover{
+                        background-color: white;
+                        color: rgb(95, 93, 93);
+                    }
+                }
+
+            }
+        }
+    }
+
+}
