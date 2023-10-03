@@ -10,9 +10,14 @@ export default function Produtos() {
 
   const [listaProdutosLocal, setListaProdutosLocal] = useState([{}]);
 
+  
+
   //Estrutura que recebe a lista de produtos externa e repassa para uma lista local.
   useEffect(() => {
-    setListaProdutosLocal(ListaProdutosExterna);
+    fetch("http://localhost:5000/produtos") //faz o request
+    .then((response)=> response.json()) //recebe resposta e transforma em json
+    .then((response)=> setListaProdutosLocal(response)) //envia a resposta para a ListaProdutosLocal
+    .catch(error =>console.log(error))
   }, []);
 
   return (

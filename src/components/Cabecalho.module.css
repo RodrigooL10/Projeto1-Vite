@@ -9,6 +9,7 @@
     
     & h1{
         text-align: center;
+        align-self: center;
     }
 
     & img{
@@ -22,14 +23,14 @@
 
             & li{
                 display: inline-block;
-                padding: 0 5px;
                 
                 & a{
                     text-decoration: none;
                     color: white;
                     display: inline-block;
                     font-weight: bold;
-                    padding: 50px 10px;
+                    padding: 30px 10px;
+                    transition: background-color ease-out 300ms, color ease-out 300ms;
 
                     &:hover{
                         background-color: white;
