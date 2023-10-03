@@ -25,4 +25,6 @@ Currently, two official plugins are available:
     <React.StrictMode>
     +   <RouterProvider/>
     + </React.StrictMode>
+
+## npm run churros (churros apelido para json server definido em package.json)
 )
