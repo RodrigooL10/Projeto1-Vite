@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react'
+import './ExcluirProdutos.scss'
 
 
 export default function ExcluirProdutos() {
@@ -47,10 +48,11 @@ export default function ExcluirProdutos() {
     }
 
   return (
-    <div>Excluir Produto
+    <div className='container'>
+      <h1>Excluir Produto</h1>
       <h2>Deseja excluir o produto?</h2>
-      <button onClick={handleSubmit}>Sim</button>
-      <button onClick={handleSubmit2}>Não</button>
+      <button className='sim' onClick={handleSubmit}>Sim</button>
+      <button className='nao' onClick={handleSubmit2}>Não</button>
     </div>
 
   )

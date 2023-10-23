@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import "./Post.scss"
 
 export default function PostarProdutos() {
   const navigate = useNavigate();
 
   const [produto, setProduto] = useState({
-    id: null, // Adiciona um campo para o ID
+    id: null,
     nome: '',
-    descricao: '',
+    desc: '',
     preco: 0,
   });
 
@@ -18,29 +19,46 @@ export default function PostarProdutos() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    // Gere um ID único (por exemplo, usando a função Date)
-    const id = maxId + 1;
-
-    // Crie o objeto para postagem com o ID gerado
-    const post_data = {
-      id,
-      nome: produto.nome,
-      descricao: produto.descricao,
-      preco: produto.preco,
-    };
-
-    fetch(`http://localhost:5000/produtos`, { // Remove o '/${id}' para criar um novo produto
-      method: "POST",
-      body: JSON.stringify(post_data),
-      headers: {
-        "Content-Type": "application/json; charset=UTF-8",
-      },
-    })
+  
+   
+    fetch('http://localhost:5000/produtos')
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        navigate('/postar/produtos'); 
+        
+        const existingIds = data.map((produto) => produto.id);
+        const maxId = existingIds.length > 0 ? Math.max(...existingIds) : 0;
+        const id = maxId + 1;
+  
+        const post_data = {
+          id,
+          nome: produto.nome,
+          desc: produto.desc,
+          preco: produto.preco,
+        };
+  
+    
+        fetch('http://localhost:5000/produtos', {
+          method: 'POST',
+          body: JSON.stringify(post_data),
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+        })
+        .then((response) => {
+            console.log("STATUS DA REQUISIÇÃO: " + response.status);
+            if (response.status === 201) {
+              alert("Produto adicionado com sucesso!");
+              // Redirect
+              navigate("/produtos");
+            } else {
+              alert("Erro ao adicionar o produto");
+              navigate('/postar/produtos');
+            }
+          })
+          .then((data) => {
+            console.log(data);
+          })
+          .catch((error) => console.error(error));
       })
       .catch((error) => console.error(error));
   };
@@ -51,7 +69,7 @@ export default function PostarProdutos() {
 
       <form onSubmit={handleSubmit}>
         <fieldset>
-          <legend>Produto Selecionado</legend>
+          <legend>Adicionar Produto</legend>
           <div>
             <label htmlFor="idNome">Nome</label>
             <input
@@ -67,10 +85,10 @@ export default function PostarProdutos() {
             <label htmlFor="idDesc">Descrição</label>
             <input
                 type="text"
-                name="descricao" // Corrija o name para "descricao"
+                name="desc" // Corrija o name para "descricao"
                 id="idDesc"
                 placeholder="Digite a descrição do produto"
-                value={produto.descricao}
+                value={produto.desc}
                 onChange={handleChange}
             />
             </div>

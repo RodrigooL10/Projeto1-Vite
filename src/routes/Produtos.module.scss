@@ -1,7 +1,7 @@
 
 
 .tblEstilo{
-    border: 2px solid #ccc;
+    border: 2px solid black;
     border-collapse: collapse;
     margin: 0 auto;
 
@@ -10,7 +10,7 @@
         text-align: center;
 
         & th{
-            border: 2px solid #ccc;
+            border: 2px solid black;
         }
     }
 
@@ -21,7 +21,7 @@
             }
 
             & td{
-                border: 2px solid #ccc;
+                border: 2px solid black;
 
                 &:first-child{
                     text-align: center;
@@ -40,7 +40,7 @@
     & tfoot{
         & tr{
             & td{
-                border: 2px solid #ccc;
+                border: 2px solid black;
                 text-align: center;
             }
         }
